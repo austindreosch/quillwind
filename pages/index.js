@@ -8,7 +8,7 @@ export default function Home() {
   return (
     
     <div className="w-screen h-screen overflow-hidden flex justify-center items-center bg-my-darkblue">
-      <Image src={HeroImage} fill className=''/>
+      <Image src={HeroImage} alt="gray swirls" fill className=''/>
       <div className='relative z-10 text-white px-10 py-5 text-center max-w-screen-sm bg-my-black rounded-xl backdrop-blur-sm'> 
         <Logo />
         <p>
