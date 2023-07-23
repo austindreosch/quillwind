@@ -15,7 +15,7 @@ export const AppLayout = ({ children }) => {
                         <Link href="/"> <Logo /> </Link>
                     </div>
                     <Link href="/post/new" className="text-my-white bg-my-lightblue w-64 text-center cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-my-white hover:text-my-black transition-colors block text-heading-500 tracking-widest mx-auto">New Post</Link>
-                    <Link href="/buybucks" className="block mt-2 text-center py-2">
+                    <Link href="/purchase" className="block mt-2 text-center py-2">
                         <FontAwesomeIcon icon={faSackDollar} className="text-my-yellow"/>
                         <span className="pl-2">50 Quillbucks</span>
                     </Link>

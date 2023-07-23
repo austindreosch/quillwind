@@ -16,7 +16,7 @@ export default function NewPost(props) {
         setIsLoading(true);
         // console.log("we are loading new post");
         try{
-            const response = await axios.post('/api/generatePost', {topic, keywords}, {
+            const response = await axios.post('/api/generatepost', {topic, keywords}, {
                 headers: {
                     'content-type': 'application/json',
                 }
