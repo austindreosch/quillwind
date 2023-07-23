@@ -29,7 +29,7 @@ export default withApiAuthRequired (async function handler(req, res) {
             content: "You are a blog post generator."
             }, {
                 role: "user",
-                content: `Write a long and detailed SEO-friendly blog post about ${topic}. that targets the following comma-separated keywords: ${keywords}. The content should be formatted in SEO-minded HTML, limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, ul, ol, li, i, img, and blockquote.`
+                content: `Write a long and detailed SEO-friendly blog post about ${topic}. that targets the following comma-separated keywords: ${keywords}. The content should be formatted in SEO-minded HTML, limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, ul, ol, li, i and blockquote.`
             }
         ]
     })
@@ -44,7 +44,7 @@ export default withApiAuthRequired (async function handler(req, res) {
             content: "You are a blog post generator."
             }, {
                 role: "user",
-                content: `Write a long and detailed SEO-friendly blog post about ${topic}. that targets the following comma-separated keywords: ${keywords}. The content should be formatted in SEO-minded HTML, limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, ul, ol, li, i, img, and blockquote.`
+                content: `Write a long and detailed SEO-friendly blog post about ${topic}. that targets the following comma-separated keywords: ${keywords}. The content should be formatted in SEO-minded HTML, limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, ul, ol, li, i and blockquote.`
             }, {    
                 role: "assistant",
                 content: postContent
@@ -100,7 +100,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     })
     
     try {
-        res.status(200).json({ post: { postContent, title, metaDescription } })
+        res.status(200).json({ postId: post.insertedId })
     } catch (error) {
         res.status(500).json({ error: 'Error parsing the OpenAI response.' })
     }

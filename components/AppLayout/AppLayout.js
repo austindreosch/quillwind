@@ -1,12 +1,31 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { faRightFromBracket, faSackDollar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Logo } from "../Logo";
 
+
+
 export const AppLayout = ({ children }) => {
-    const {user} = useUser();
+    const {user, isLoading} = useUser();
+    const [quillbucks, setQuillbucks] = useState(0);
+
+    useEffect(() => {
+        if(!isLoading && user){
+            axios.get('/api/checkbucks').then((response) => {
+                setQuillbucks(response.data.availableQuillbucks);
+            }).catch((error) => {
+                console.log(error);
+            })
+        }
+    }, [user, isLoading]);
+
+
+
+
     return (
         <div className="grid grid-cols-[300px_1fr] h-screen max-h-screen">
             <div className="flex flex-col overflow-hidden text-my-white">
@@ -17,7 +36,7 @@ export const AppLayout = ({ children }) => {
                     <Link href="/post/new" className="text-my-white bg-my-lightblue w-64 text-center cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-my-white hover:text-my-black transition-colors block text-heading-500 tracking-widest mx-auto">New Post</Link>
                     <Link href="/purchase" className="block mt-2 text-center py-2">
                         <FontAwesomeIcon icon={faSackDollar} className="text-my-yellow"/>
-                        <span className="pl-2">50 Quillbucks</span>
+                        <span className="pl-2">{quillbucks} Quillbucks</span>
                     </Link>
                 </div>
                 <div className="flex-1 overflow-auto bg-gradient-to-b from-my-darkblue to-my-black"> list of posts</div>

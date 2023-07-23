@@ -1,12 +1,12 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import axios from "axios";
+import { useRouter } from 'next/router';
 import { useState } from "react";
 import { Comment } from 'react-loader-spinner';
 import { AppLayout } from "../../components/AppLayout";
 
 export default function NewPost(props) {
-    // console.log("This is the new post props.", props);
-    const [postContent, setPostContent ] = useState("");
+    const router = useRouter();
     const [topic, setTopic] = useState("");
     const [keywords, setKeywords] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +14,7 @@ export default function NewPost(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        // console.log("we are loading new post");
+        const startTime = Date.now();
         try{
             const response = await axios.post('/api/generatepost', {topic, keywords}, {
                 headers: {
@@ -22,11 +22,15 @@ export default function NewPost(props) {
                 }
             });
             console.log('Response data:', response.data); 
-            setPostContent(response.data.post.postContent);
+            if(response.data.postId){
+                router.push(`/post/${response.data.postId}`);
+            }
         } catch (error) {
             console.log(error);
         } finally {
-            // console.log("we are done loading new post");
+            const endTime = Date.now();  // Record the end time
+            const duration = endTime - startTime;  // Calculate the difference
+            console.log(`GPT-3 generation took ${duration} milliseconds`);
             setIsLoading(false);
         }
     }
@@ -55,11 +59,6 @@ export default function NewPost(props) {
                     <Comment visible={true} height="80" width="80" ariaLabel="comment-loading" wrapperStyle={{}} wrapperClass="comment-wrapper" color="#fff" backgroundColor="#00a8e8ff" />
                 </div>
                 ) : null}
-                {!isLoading && postContent && (
-                <div>
-                    <div dangerouslySetInnerHTML={{ __html: postContent }} />
-                </div>
-                )}
         </div>
     )
 }
