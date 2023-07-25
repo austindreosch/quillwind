@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import { useState } from "react";
 import { Comment } from 'react-loader-spinner';
 import { AppLayout } from "../../components/AppLayout";
-
+import { getAppProps } from "../../utils/getAppProps";
+ 
 export default function NewPost(props) {
     const router = useRouter();
     const [topic, setTopic] = useState("");

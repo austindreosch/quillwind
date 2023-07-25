@@ -4,15 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
 import { Logo } from "../Logo";
 
 
 
-export const AppLayout = ({ children, ...rest }) => {
+export const AppLayout = ({ children, posts }) => {
     const {user, isLoading} = useUser();
     const [quillbucks, setQuillbucks] = useState(0);
-    console.log("THE REST:", rest);
+    const asPath = useRouter().asPath;
+    const selectedPost = asPath.split('/').pop();
 
     useEffect(() => {
         if(!isLoading && user){
@@ -40,7 +42,23 @@ export const AppLayout = ({ children, ...rest }) => {
                         <span className="pl-2">{quillbucks} Quillbucks</span>
                     </Link>
                 </div>
-                <div className="flex-1 overflow-auto bg-gradient-to-b from-my-darkblue to-my-black"> list of posts</div>
+                <div className="flex-1 overflow-auto bg-gradient-to-b from-my-darkblue to-my-black">
+                    <div>
+                    {posts.map((post, index) => {
+                        console.log(`post._id: ${post._id}, selectedPost: ${selectedPost}`);
+                            return (
+                                <Link
+                                href={`/post/${post._id}`}
+                                key={index}
+                                className={`block text-white text-ellipsis overflow-hidden whitespace-nowrap my-4 mx-3 px-3 py-2 cursor-pointer rounded-md ${
+                                    post._id == selectedPost ? "bg-my-midblue" : "bg-white bg-opacity-10"
+                                }`}>
+                                    {post.title.replace(/<\/?[^>]+(>|$)/g, "")}
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </div>
                 <div className="bg-my-black flex items-center gap-2 border-t border-t-black/50 h-20 px-2">
                     {!!user ? (
                         <>
