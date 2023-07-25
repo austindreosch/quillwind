@@ -20,6 +20,8 @@ export const getAppProps  = async (context) => {
 
     const posts = await db.collection('posts').find({
         userId: user._id
+    }).sort({
+        created: -1
     }).toArray();
 
     return {
@@ -27,7 +29,8 @@ export const getAppProps  = async (context) => {
         posts: posts.map(({created, _id, userId, ...rest}) => ({
             _id: _id.toString(),
             created: created.toString(),
-            ...rest
-        }))
+            ...rest 
+        })),
+        // could send quillbucks and postid here for AppLayout
     };
 }

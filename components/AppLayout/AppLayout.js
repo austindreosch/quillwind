@@ -10,11 +10,12 @@ import { Logo } from "../Logo";
 
 
 
-export const AppLayout = ({ children, posts }) => {
+export const AppLayout = ({ children, posts}) => {
     const {user, isLoading} = useUser();
+    // functionality for displaying quillbucks and current selectedpost
     const [quillbucks, setQuillbucks] = useState(0);
     const asPath = useRouter().asPath;
-    const selectedPost = asPath.split('/').pop();
+    const selectedPost = asPath.split('/').pop() || null;
 
     useEffect(() => {
         if(!isLoading && user){
@@ -51,7 +52,7 @@ export const AppLayout = ({ children, posts }) => {
                                 href={`/post/${post._id}`}
                                 key={index}
                                 className={`block text-white text-ellipsis overflow-hidden whitespace-nowrap my-4 mx-3 px-3 py-2 cursor-pointer rounded-md ${
-                                    post._id == selectedPost ? "bg-my-midblue" : "bg-white bg-opacity-10"
+                                    post._id == selectedPost ? "bg-my-midblue border border-white" : "bg-white bg-opacity-10"
                                 }`}>
                                     {post.title.replace(/<\/?[^>]+(>|$)/g, "")}
                                 </Link>
