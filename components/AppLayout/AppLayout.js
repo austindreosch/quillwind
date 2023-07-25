@@ -9,9 +9,10 @@ import { Logo } from "../Logo";
 
 
 
-export const AppLayout = ({ children }) => {
+export const AppLayout = ({ children, ...rest }) => {
     const {user, isLoading} = useUser();
     const [quillbucks, setQuillbucks] = useState(0);
+    console.log("THE REST:", rest);
 
     useEffect(() => {
         if(!isLoading && user){
@@ -60,9 +61,7 @@ export const AppLayout = ({ children }) => {
                     }
                 </div>
             </div>
-            <div>
-                {children}
-            </div>
+            {children}
         </div>
     )
 }

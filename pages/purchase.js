@@ -22,9 +22,11 @@ BuyBucks.getLayout = function getLayout(page, pageProps) {
   return <AppLayout {...pageProps}>{page}</AppLayout>
 }
   
-export const getServerSideProps = withPageAuthRequired(() => {
-  return {
-      props: {
-      }
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(context) {
+    const props = await getAppProps(context);
+    return {
+      props
+    }
   }
 })

@@ -68,9 +68,11 @@ NewPost.getLayout = function getLayout(page, pageProps) {
     
 }
 
-export const getServerSideProps = withPageAuthRequired(() => {
-    return {
-        props: {
-        }
+export const getServerSideProps = withPageAuthRequired({
+    async getServerSideProps(context) {
+      const props = await getAppProps(context);
+      return {
+        props
+      }
     }
 })
