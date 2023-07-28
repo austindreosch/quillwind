@@ -46,7 +46,7 @@ export const AppLayout = ({ children, posts}) => {
                 <div className="flex-1 overflow-auto bg-gradient-to-b from-my-darkblue to-my-black">
                     <div>
                     {posts.map((post, index) => {
-                        console.log(`post._id: ${post._id}, selectedPost: ${selectedPost}`);
+                        // console.log(`post._id: ${post._id}, selectedPost: ${selectedPost}`);
                             return (
                                 <Link
                                 href={`/post/${post._id}`}
