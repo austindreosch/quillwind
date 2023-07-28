@@ -1,6 +1,9 @@
-import { UserProvider } from '@auth0/nextjs-auth0/client'
-import { DM_Sans, Rubik } from '@next/font/google'
-import '../styles/globals.css'
+import { UserProvider } from '@auth0/nextjs-auth0/client';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { DM_Sans, Rubik } from '@next/font/google';
+import '../styles/globals.css';
+config.autoAddCss = false;
 
 const dmSans = DM_Sans ({
   weight : ['400', '500', '700'],
