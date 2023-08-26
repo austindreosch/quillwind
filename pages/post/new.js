@@ -54,7 +54,8 @@ export default function NewPost(props) {
                         <div>
                             <button
                                 type="submit"
-                                className="text-my-white bg-my-lightblue w-full px-8 py-3 text-center outline-none cursor-pointer uppercase rounded-md hover:bg-my-white hover:text-my-black hover:ring-4 hover:ring-[#00a8e8ff] hover:shadow-inset hover:ring-opacity-50 transition-colors block text-heading-500 tracking-widest"
+                                className="disabled:bg-gray-200 disabled:cursor-not-allowed text-my-white bg-my-lightblue w-full px-8 py-3 text-center outline-none cursor-pointer uppercase rounded-md hover:bg-my-white hover:text-my-black hover:ring-4 hover:ring-[#00a8e8ff] hover:shadow-inset hover:ring-opacity-50 transition-colors block text-heading-500 tracking-widest"
+                                disabled={!topic.trim() || !keywords.trim()}
                             >
                                 Generate
                             </button>

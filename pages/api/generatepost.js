@@ -20,6 +20,10 @@ export default withApiAuthRequired (async function handler(req, res) {
     const openai = new OpenAIApi(configuration)
     const { topic, keywords } = req.body;
 
+    if (!topic || !keywords) {
+        return res.status(400).json({ error: 'Please provide a topic and keywords.' })
+    }
+
     const postContentResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         temperature: 0.3,
