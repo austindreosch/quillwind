@@ -43,7 +43,7 @@ export const AppLayout = ({ children, posts}) => {
                         <span className="pl-2">{quillbucks} Quillbucks</span>
                     </Link>
                 </div>
-                <div className="flex-1 overflow-auto bg-gradient-to-b from-my-darkblue to-my-black">
+                <div className="flex-1 overflow-auto bg-gradient-to-b from-my-darkblue to-my-black scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-rounded-sm">
                     <div>
                     {posts.map((post, index) => {
                         // console.log(`post._id: ${post._id}, selectedPost: ${selectedPost}`);
