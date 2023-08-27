@@ -1,5 +1,6 @@
 import verifyStripe from '@webdeveducation/next-verify-stripe';
 import Cors from 'micro-cors';
+import getRawBody from 'raw-body';
 import stripeInit from 'stripe';
 import ClientPromise from "../../../lib/mongodb";
 
@@ -23,6 +24,13 @@ const handler = async (req, res) => {
       let event;
       try {
           console.log('Verifying Stripe webhook signature...');
+
+
+          const rawBody = await getRawBody(req);
+          console.log("Raw body:", rawBody.toString('utf8'));
+          console.log("Stripe-Signature header:", req.headers['stripe-signature']);
+
+
           event = await verifyStripe({req, stripe, endpointSecret});
           console.log('Webhook event verified:', event.type);
       } catch (error) {
