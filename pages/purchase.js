@@ -17,7 +17,12 @@ export default function BuyBucks() {
 
     return (
 
-      <div className="flex items-center justify-center min-h-screen p-12">
+      <div className="flex flex-col items-center justify-center min-h-screen p-12">
+        <div className="border rounded-lg shadow-md bg-gray-100 p-1 w-[300px] flex flex-col items-center mb-4">
+          <h2 className="text-lg font-medium mb-1 text-my-lightblue">Try our test credit card!</h2>
+          <p className="text-sm text-gray-800">#: <span className="font-medium"><b>4242 4242 4242 4242</b></span></p>
+          <p className="text-sm text-gray-800">MM/YY: <span className="font-medium"><b>42/42</b></span> CVV: <span className="font-medium"><b>424</b></span></p>
+        </div>
         <div className="w-[550px] h-[320px] max-w-[550px] rounded-lg bg-gray-100 shadow-lg text-center">
           <div className="flex items-center justify-center">
             <div className="text-5xl text-center font-heading pb-4 font-semibold text-my-green ml-2">

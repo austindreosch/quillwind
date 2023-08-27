@@ -66,11 +66,11 @@ export const AppLayout = ({ children, posts}) => {
                             <div className="min-w-[50px]">
                                 <Image src={user.picture} alt={user.name} width={50} height={50} className="rounded-lg border-my-white border-2 "/>
                             </div> 
-                            <div className="flex-1 flex justify-between px-2">
-                                <div className="tracking-wider">
-                                    {user.nickname}{user.email}
+                            <div className="flex-1 flex justify-between p-2 grid grid-cols-8">
+                                <div className="tracking-wider pl-1 col-span-7 overflow-hidden">
+                                    {user.nickname}
                                 </div>
-                                <Link href="/api/auth/logout" className="pr-6">
+                                <Link href="/api/auth/logout" className="col-span-1 px-2">
                                     <FontAwesomeIcon icon={faRightFromBracket} />
                                 </Link>
                             </div>
