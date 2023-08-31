@@ -13,12 +13,12 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@next/font": "^13.1.6",
+    "@next/font": "^13.4.19",
     "@webdeveducation/next-verify-stripe": "^1.0.1",
     "axios": "^1.4.0",
     "micro-cors": "^0.1.1",
-    "mongodb": "^4.16.0",
-    "next": "13.1.6",
+    "mongodb": "^4.17.1",
+    "next": "^13.4.19",
     "numeral": "^2.0.6",
     "openai": "^3.2.1",
     "react": "18.2.0",
@@ -27,7 +27,7 @@
     "sharp": "^0.32.1",
     "stripe": "^11.8.0",
     "tailwind-scrollbar": "^3.0.5",
-    "vercel": "^32.1.0"
+    "vercel": "^24.2.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
