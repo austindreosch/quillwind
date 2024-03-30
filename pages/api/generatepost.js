@@ -35,7 +35,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     const postContentResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo-0125",
         temperature: 0.3,
-        // max_tokens: 3600,
+        max_tokens: 3600,
         messages: [{
             role: "system",
             content: "You are a blog post generator."
@@ -50,7 +50,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     const TitleResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo-0125",
         temperature: 0.3,
-        // max_tokens: 3600,
+        max_tokens: 3600,
         messages: [{
             role: "system",
             content: "You are a blog post generator."
@@ -69,7 +69,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     const MetaResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo-0125",
         temperature: 0.3,
-        // max_tokens: 3600,
+        max_tokens: 3600,
         messages: [{
             role: "system",
             content: "You are a blog post generator."
