@@ -5,11 +5,18 @@ import ClientPromise from "../../lib/mongodb";
 
 export default withApiAuthRequired (async function handler(req, res) {
     const { user } = await getSession(req, res);
+    console.log("User Session:", user); //TEST
+
     const client = await ClientPromise;
+    console.log("MongoDB Client Connected:", !!client); //TEST
+
     const db = client.db('quillwind');
     const userProfile = await db.collection('users').findOne({
         auth0Id: user.sub
     })
+    console.log("User Profile:", userProfile); //TEST
+
+
     if (!userProfile.availableQuillbucks || userProfile.availableQuillbucks < 10) {
         return res.status(400).json({ error: 'You do not have enough Quillbucks to generate a post.' })
     }
@@ -23,6 +30,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     if (!topic || !keywords) {
         return res.status(400).json({ error: 'Please provide a topic and keywords.' })
     }
+    console.log("Requesting OpenAI for content with topic:", topic, "and keywords:", keywords); //TEST
 
     const postContentResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
@@ -84,6 +92,8 @@ export default withApiAuthRequired (async function handler(req, res) {
     console.log("POSTCONTENT:", postContent)
     console.log("TITLE:", title)
     console.log("METADESCRIPTION:", metaDescription)
+    console.log("OpenAI Post Content Response:", postContentResponse);
+
 
     await db.collection('users').updateOne({
         auth0Id: user.sub
