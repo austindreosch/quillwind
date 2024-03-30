@@ -5,7 +5,7 @@ import ClientPromise from "../../lib/mongodb";
 
 export default withApiAuthRequired (async function handler(req, res) {
     const { user } = await getSession(req, res);
-    console.log("User Session:", user); //TEST
+    // console.log("User Session:", user); //TEST
 
     const client = await ClientPromise;
     console.log("MongoDB Client Connected:", !!client); //TEST
@@ -14,7 +14,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     const userProfile = await db.collection('users').findOne({
         auth0Id: user.sub
     })
-    console.log("User Profile:", userProfile); //TEST
+    // console.log("User Profile:", userProfile); //TEST
 
 
     if (!userProfile.availableQuillbucks || userProfile.availableQuillbucks < 10) {
@@ -33,7 +33,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     console.log("Requesting OpenAI for content with topic:", topic, "and keywords:", keywords); //TEST
 
     const postContentResponse = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-0125",
         temperature: 0.3,
         // max_tokens: 3600,
         messages: [{
@@ -48,7 +48,7 @@ export default withApiAuthRequired (async function handler(req, res) {
     // post
     const postContent = postContentResponse.data.choices[0]?.message?.content || "Error parsing the OpenAI response.";
     const TitleResponse = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-0125",
         temperature: 0.3,
         // max_tokens: 3600,
         messages: [{
@@ -67,7 +67,7 @@ export default withApiAuthRequired (async function handler(req, res) {
         ]
     })
     const MetaResponse = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-0125",
         temperature: 0.3,
         // max_tokens: 3600,
         messages: [{
